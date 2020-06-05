@@ -10,6 +10,8 @@ import random
 length = int(input("Enter the length of password: "))
 if length <6:
     print("Error!!!! too small,must not be less than 6")
+    length = int(input("Try Again!! Enter the length of password: "))
+
 
 else:
     def getPass(length):
