@@ -69,14 +69,15 @@ ORDER BY c.Email ;
  */
 
  
-Select g.Name AS  GenreName, i.BillingCountry, sum(il.UnitPrice)  As price
+SELECT *, max(price) AS pricr
+FROM (SELECT i.BillingCountry AS country, g.Name AS  Genre Name, sum(il.UnitPrice)  As price
 FROM Customer c JOIN Invoice i
 ON c.CustomerId = i.CustomerId JOIN InvoiceLine il
 ON i.InvoiceId =  il.InvoiceId JOIN Track t
 ON il.TrackId = t.TrackId JOIN Genre G
 ON T.GenreId = G.GenreId
-GROUP BY i.BillingCountry, g.Name
-ORDER BY max(il.UnitPrice)DESC;
+GROUP BY i.BillingCountry, G.GenreId)
+GROUP BY county ;
 
 
 
