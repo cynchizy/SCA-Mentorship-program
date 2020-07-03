@@ -68,13 +68,14 @@ ORDER BY c.Email ;
  For countries where the maximum number of purchases is shared return all Genres.
  */
 
-SELECT COUNT(i.InvoiceId) AS id, g.Name AS  GenreName, i.BillingCountry, il.UnitPrice  As price
+ 
+Select g.Name AS  GenreName, i.BillingCountry, sum(il.UnitPrice)  As price
 FROM Customer c JOIN Invoice i
 ON c.CustomerId = i.CustomerId JOIN InvoiceLine il
 ON i.InvoiceId =  il.InvoiceId JOIN Track t
 ON il.TrackId = t.TrackId JOIN Genre G
 ON T.GenreId = G.GenreId
-GROUP BY i.BillingCountry
+GROUP BY i.BillingCountry, g.Name
 ORDER BY max(il.UnitPrice)DESC;
 
 
